@@ -1,0 +1,10 @@
+<div class="modal">
+  <ion-content>
+    <h1>{{stopwatch.data.value | date:'mm:ss sss'}}</h1>
+    <button ng-click='stopwatch.start()' ng-show="!stopwatch.data.running">START</button>
+    <button ng-click='stopwatch.stop()' ng-show="stopwatch.data.running">PAUSE</button>
+    <button ng-click='stopwatch.reset()'>Reset</button>
+    <button ng-click='stopwatch.lap()'>Lap</button>
+    <h3>{{stopwatch.data.laps | json}}</h3>
+  </ion-content>
+</div>

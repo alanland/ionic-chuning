@@ -1,0 +1,42 @@
+<div class="modal">
+
+  <!-- Modal header bar -->
+  <ion-header-bar class="">
+    <h1 class="title">Motion Test</h1>
+    <button class="button button-clear button-positive" ng-click="goHome()">Cancel</button>
+  </ion-header-bar>
+
+  <!-- Modal content area -->
+  <ion-content>
+    <div class="list">
+      <label class="item item-input">
+        <span class="input-label">X方向:</span>
+        <input type="text" ng-disabled="true" ng-model="motion.x">
+      </label>
+      <label class="item item-input">
+        <span class="input-label">Y方向:</span>
+        <input type="text" ng-disabled="true" ng-model="motion.y">
+      </label>
+      <label class="item item-input">
+        <span class="input-label">Z方向:</span>
+        <input type="text" ng-disabled="true" ng-model="motion.z">
+      </label>
+      <label class="item item-input">
+        <span class="input-label">时间:</span>
+        <input type="text" ng-disabled="true" ng-model="motion.timestamp | date:'yyyy-MM-dd HH:mm:ss Z'">
+      </label>
+      <label class="item item-input">
+        <span class="input-label">经度:</span>
+        <input type="text" ng-disabled="true" ng-model="position.lat">
+      </label>
+      <label class="item item-input">
+        <span class="input-label">维度:</span>
+        <input type="text" ng-disabled="true" ng-model="position.long">
+      </label>
+    </div>
+    <div class="padding">
+      <button type="submit" class="button button-block button-positive">Create Task</button>
+    </div>
+  </ion-content>
+
+</div>
