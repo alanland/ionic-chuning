@@ -1,0 +1,13 @@
+convert 1.jpg 1.png
+cp 1.png  drawable-land-hdpi-screen.png
+cp 1.png  drawable-land-ldpi-screen.png
+cp 1.png  drawable-land-mdpi-screen.png
+cp 1.png  drawable-land-xhdpi-screen.png
+cp 1.png  drawable-land-xxhdpi-screen.png
+cp 1.png  drawable-land-xxxhdpi-screen.png
+cp 1.png  drawable-port-hdpi-screen.png
+cp 1.png  drawable-port-ldpi-screen.png
+cp 1.png  drawable-port-mdpi-screen.png
+cp 1.png  drawable-port-xhdpi-screen.png
+cp 1.png  drawable-port-xxhdpi-screen.png
+cp 1.png  drawable-port-xxxhdpi-screen.png
