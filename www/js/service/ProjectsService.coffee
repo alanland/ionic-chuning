@@ -3,6 +3,24 @@ angular.module('app.service.ProjectsService', [
     'ionic.utils'
 ])
 
+.factory('ChuningService', ['$filter', '$localstorage', ($filter, $localstorage)->
+    DATE_FORMAT = 'yyyyMMdd'
+
+    activeProject: null
+    projects: {}
+    todayKey: ->
+        $filter('date')(new Date(), DATE_FORMAT)
+    getToday: ->
+        $localstorage.getObject(@todayKey()) || {}
+    saveToday: (projects)->
+        $localstorage.setObject @todayKey(), projects
+    saveProject: (project)->
+        projects = $localstorage.getObject(@todayKey())
+        projects[project.key] = project
+        $localstorage.setObject @todayKey(), projects
+
+])
+
 .factory('LocalStorageProjectsService', ['$localstorage', ($localstorage)->
     activeProject: null
     projects: []

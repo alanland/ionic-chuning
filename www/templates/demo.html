@@ -1,7 +1,7 @@
 <ion-view title="Login">
   <div class="bar bar-header">
     <button class="button button-icon icon ion-home" ng-click="goHome()"></button>
-    <div class="h1 title">gogogo</div>
+    <div class="h1 title">{{project.title}}</div>
     <button class="button button-clear button-positive">Edit</button>
   </div>
   <ion-content overflow-scroll="true" padding="true" class="has-header">
@@ -10,7 +10,7 @@
       <button class="button w32p" ng-click='stopwatch.start()' ng-show="!stopwatch.data.running">START</button>
       <button class="button w32p" ng-click='stopwatch.stop()' ng-show="stopwatch.data.running">PAUSE</button>
       <button class="button w32p" ng-click='stopwatch.reset()'>Reset</button>
-      <button class="button w32p" ng-click='stopwatch.lap()'>Lap</button>
+      <button class="button w32p" ng-click='stopwatch.resetStart()'>Restart</button>
     </div>
     <div>
       <h1 class="center">{{current}}</h1>
