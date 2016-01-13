@@ -79,8 +79,7 @@ angular.module('app.controller.home', [
             addProjectValue getCount()
             saveProject()
         )
-        stopwatch.reset()
-        stopwatch.start()
+        stopwatch.restart()
     initTraining()
 
     $scope.goHome = ->

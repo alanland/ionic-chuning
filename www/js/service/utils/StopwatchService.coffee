@@ -51,7 +51,7 @@ factory("stopwatch", (SW_DELAI, $interval) ->
     start: start
     stop: stop
     reset: reset
-    resetStart: ->
+    restart: ->
         reset()
         start()
     lap: lap
