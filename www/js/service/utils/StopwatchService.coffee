@@ -9,18 +9,20 @@ factory("stopwatch", (SW_DELAI, $interval) ->
         laps: []
         running: false
     }
+    callback = ->
+        console.log 1
 
     running = ->
         angular.isDefined stopwatch
 
     stopwatch = undefined
     start = ->
-        console.log running
         if angular.isDefined(stopwatch)
             return
         stopwatch = $interval(->
             if data.value > 0
                 data.value -= SW_DELAI
+                callback.apply @
                 data.running = true
             else
                 data.value = 0
@@ -46,6 +48,12 @@ factory("stopwatch", (SW_DELAI, $interval) ->
     stop: stop
     reset: reset
     lap: lap
+    setTarget: (t)->
+        target = t
+    setCallback: (c)->
+        callback = c
+    getCount: (delay)-> # 获取开始之后有多少次数
+        parseInt ((target - data.value) / delay)
 )
 
 
