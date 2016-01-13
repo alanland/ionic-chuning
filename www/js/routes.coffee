@@ -10,10 +10,10 @@ angular.module('app.routes', [])
         controller: 'homeCtrl'
     })
 
-    .state('login', {
-        url: '/login',
-        templateUrl: 'templates/login.html',
-        controller: 'loginCtrl'
+    .state('demo',{
+        url: '/demo',
+        templateUrl: 'templates/demo.html',
+        controller: 'demoController'
     })
 
     .state('menu', {
