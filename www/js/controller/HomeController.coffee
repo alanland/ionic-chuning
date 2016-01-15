@@ -14,7 +14,7 @@ angular.module('app.controller.home', [
             target:
                 count: 10000
                 groups: 20
-                pergroup: 5
+                pergroup: 500
         }
         {
             title: 'Demo',
@@ -32,13 +32,14 @@ angular.module('app.controller.home', [
 )
 
 
-.controller('demoController', ($scope, $rootScope, $state, stopwatch, ChuningService)->
+.controller('demoController', ($scope, $rootScope, $state, $cordovaNativeAudio, stopwatch, ChuningService)->
     chuning = ChuningService
     $scope.config = config = $rootScope.project?.setting
     $scope.project = project = $rootScope.project
     $scope.stopwatch = stopwatch
     $scope.running = stopwatch.running
     $scope.current = 0
+    $scope.currentAll = 0
 
     today = chuning.getToday()
 
@@ -48,6 +49,10 @@ angular.module('app.controller.home', [
         }
 
     value = projectValue()
+
+    updateCurrentAll = ->
+        $scope.currentAll = projectValue().value
+    updateCurrentAll()
 
     addProjectValue = (toAdd)->
         v = projectValue()
@@ -78,10 +83,28 @@ angular.module('app.controller.home', [
         stopwatch.setFinishCallback(->
             addProjectValue getCount()
             saveProject()
+            updateCurrentAll()
         )
         stopwatch.restart()
     initTraining()
 
     $scope.goHome = ->
         $state.go 'home'
+
+
+    document.addEventListener('deviceready', ->
+        $cordovaNativeAudio.preloadSimple('click', 'audio/click.mp3').then(
+            (msg)->
+                console.log msg
+                $cordovaNativeAudio.play(msg)
+                $cordovaNativeAudio.play(msg)
+                $cordovaNativeAudio.play(msg)
+            (error)->
+                console.log error
+        )
+        $cordovaNativeAudio.preloadSimple('snare', 'audio/snare.mp3');
+        $cordovaNativeAudio.preloadSimple('hi-hat', 'audio/highhat.mp3');
+        $cordovaNativeAudio.preloadSimple('bass', 'audio/bass.mp3');
+        $cordovaNativeAudio.preloadSimple('bongo', 'audio/bongo.mp3');
+    )
 )
