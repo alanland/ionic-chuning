@@ -33,39 +33,60 @@ angular.module('app.controller.home', [
 
 .controller('dapaiCtrl', ($state, $scope, $localstorage)->
     storageKey = 'dapai'
+    storageSnapshot = 'dapaisnapshot'
     persons = $localstorage.getList(storageKey)
+    $scope.snapshots = $localstorage.getList(storageSnapshot) || []
+    defaultPersons = [
+        {
+            name: '李林',
+            value: 0
+        },
+        {
+            name: '郑忠',
+            value: 0
+        },
+        {
+            name: '小智',
+            value: 0
+        }
+    ]
+    $scope.step = 1
     if persons && persons.length > 0
         $scope.persons = persons
     else
-        $scope.persons = [
-            {
-                name: '李林',
-                value: 0
-            },
-            {
-                name: '郑忠',
-                value: 0
-            },
-            {
-                name: '小智',
-                value: 0
-            }
-        ]
+        $scope.persons = defaultPersons
+
     updateStorage = ->
         $localstorage.setObject(storageKey, $scope.persons)
+
+    $scope.setStep = (value)->
+        $scope.step = value
 
     $scope.add = (person)->
         for p in $scope.persons
             if p.name == person.name
-                p.value = p.value + 1
+                console.log
+                p.value = p.value + $scope.step
         updateStorage()
     $scope.subtract = (person)->
         for p in $scope.persons
             if p.name == person.name
-                p.value = p.value - 1
+                p.value = p.value - $scope.step
         updateStorage()
+    $scope.reset = ->
+        r=confirm("确定重置")
+        if r
+            $scope.step = 1
+            $scope.persons = defaultPersons
+            updateStorage()
+        else
+            return
     $scope.goHome = ->
         $state.go 'home'
+    $scope.snapshot = ->
+        $scope.snapshots.push(JSON.parse(JSON.stringify($scope.persons)))
+        $localstorage.setObject(storageSnapshot, $scope.snapshots)
+
 )
 
 
