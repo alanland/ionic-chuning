@@ -10,7 +10,7 @@ angular.module('app.routes', [])
         controller: 'homeCtrl'
     })
 
-    .state('demo',{
+    .state('demo', {
         url: '/demo',
         templateUrl: 'templates/demo.html',
         controller: 'demoController'
@@ -46,9 +46,15 @@ angular.module('app.routes', [])
         controller: 'clockCtrl'
     })
 
-    .state('stopwatch',{
+    .state('stopwatch', {
         url: '/stopwatch',
         templateUrl: 'templates/stopwatch.html',
         controller: 'stopwatchCtrl'
+    })
+
+    .state('dapai', {
+        url: '/dapai',
+        templateUrl: 'templates/dapai.html',
+        controller: 'dapaiCtrl'
     })
 )

@@ -17,8 +17,8 @@ angular.module('app.controller.home', [
                 pergroup: 500
         }
         {
-            title: 'Demo',
-            key: 'demo',
+            title: '打牌',
+            key: 'dapai',
             setting:
                 stopwatch:
                     target: 120 * 1000
@@ -29,6 +29,43 @@ angular.module('app.controller.home', [
     $scope.startTraining = (project)->
         $rootScope.project = project
         $state.go project.key
+)
+
+.controller('dapaiCtrl', ($state, $scope, $localstorage)->
+    storageKey = 'dapai'
+    persons = $localstorage.getList(storageKey)
+    if persons && persons.length > 0
+        $scope.persons = persons
+    else
+        $scope.persons = [
+            {
+                name: '李林',
+                value: 0
+            },
+            {
+                name: '郑忠',
+                value: 0
+            },
+            {
+                name: '小智',
+                value: 0
+            }
+        ]
+    updateStorage = ->
+        $localstorage.setObject(storageKey, $scope.persons)
+
+    $scope.add = (person)->
+        for p in $scope.persons
+            if p.name == person.name
+                p.value = p.value + 1
+        updateStorage()
+    $scope.subtract = (person)->
+        for p in $scope.persons
+            if p.name == person.name
+                p.value = p.value - 1
+        updateStorage()
+    $scope.goHome = ->
+        $state.go 'home'
 )
 
 
